@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mvvm_demo/res/routes/routes.dart';
+import 'package:flutter_mvvm_demo/urils/binding.dart';
+import 'package:flutter_mvvm_demo/view/splash_screen.dart';
+import 'package:get/get.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  GlobalBinding().dependencies();
   runApp(const MyApp());
 }
 
@@ -9,24 +15,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter MVVM Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: const SplashScreen(),
+      getPages: AppRoutes.appRoutes(),
     );
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const  Scaffold(
-      body: SafeArea(child: Text('Hello dev')),
-    );
-  }
-}
